@@ -11,7 +11,7 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-class PostExam(models.Model):
+class PostCat(models.Model):
     title = models.CharField(max_length = 200, help_text = "标题")
     content = models.TextField(help_text = "内容")
 
