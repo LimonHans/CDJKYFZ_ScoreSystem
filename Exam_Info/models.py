@@ -12,7 +12,8 @@ class Post(models.Model):
         return self.title
 
 class PostExam(models.Model):
-    title = 
+    title = models.CharField(max_length = 200, help_text = "标题")
+    content = models.TextField(help_text = "内容")
 
     def __str__(self):
         return self.title

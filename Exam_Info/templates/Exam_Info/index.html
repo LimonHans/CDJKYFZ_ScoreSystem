@@ -10,3 +10,15 @@
 {% else %}
     <p> No Exams</p>
 {% endif %}
+{% if Alpha_List %}
+    <ul>
+        {% for i in Alpha_List %}
+        <li>
+            <h3><b>{{ i.title }}</b></h3>
+            <p>{{ i.content }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p> No is</p>
+{% endif %}
