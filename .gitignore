@@ -1,2 +1,5 @@
 # DataBase Files
 db.sqlite3
+
+# Conpiled Python Files
+*.pyc
