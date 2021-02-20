@@ -1,0 +1,12 @@
+{% if Exam_List %}
+    <ul>
+        {% for exam in Exam_List %}
+        <li>
+            <h3>{{ exam.title }}</h3>
+            <p>{{ exam.content }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p> No Exams</p>
+{% endif %}
