@@ -24,11 +24,11 @@ class Exam(models.Model):
 
     def __str__(self):
         return self.title
-
-# 学生类
-class Student(models.Model):
-    # 姓名
-    name = models.CharField(null = False, blank = False, max_length = 10, help_text = "学生姓名", default = "无名氏")
-
-    def __str__(self):
-        return self.name
+#This class should appear in another app.
+## 学生类
+#class Student(models.Model):
+#    # 姓名
+#    name = models.CharField(null = False, blank = False, max_length = 10, help_text = "学生姓名", default = "无名氏")
+#
+#    def __str__(self):
+#        return self.name
