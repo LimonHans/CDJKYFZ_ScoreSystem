@@ -34,7 +34,7 @@ class Exam(models.Model):
     )
     # 考试年级
     grade = models.IntegerField(verbose_name = "考试年级", blank = False, help_text = "选择年级", choices = GRADES, default = 1)
-    
+
     # 参加考试的学生
     students = models.ManyToManyField('Student', default = "")
 

@@ -4,4 +4,4 @@ from .models import *
 
 
 admin.site.register(Exam)
-#admin.site.register(PostCat)
+admin.site.register(Student)
