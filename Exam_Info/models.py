@@ -23,9 +23,9 @@ class Exam(models.Model):
     value_Q2 = models.IntegerField(blank = False, help_text = "Q2 Scores", default = 75)
     value_Q3 = models.IntegerField(blank = False, help_text = "Q3 Scores", default = 150)
     value_max = models.IntegerField(blank = False, help_text = "Max Scores", default = 150)
-
     # 考试时间
     time = models.DateField()
+
     # 年级元组
     GRADES = (
         (1, '高一'),
@@ -33,9 +33,10 @@ class Exam(models.Model):
         (3, '高三')
     )
     # 考试年级
-    grade = models.PositiveSmallIntegerField(verbose_name = "考试年级", blank = False, help_text = "请填入1或2或3，表示高一或高二或高三。", choices = GRADES)
+    grade = models.IntegerField(verbose_name = "考试年级", blank = False, help_text = "选择年级", choices = GRADES, default = 1)
+    
     # 参加考试的学生
-    students = models.ManyToManyField('Student')
+    students = models.ManyToManyField('Student', default = "")
 
     def __str__(self):
         return self.title
