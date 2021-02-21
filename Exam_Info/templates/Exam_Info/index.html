@@ -5,10 +5,9 @@
     <script src = "https://cdn.jsdelivr.net/npm/echarts@5.0.2/dist/echarts.min.js"></script>
 </head>
 <body>
-    <p>This is title</p>
-    <p>{{ Exam_List.0.title }}</p>
+    {{ Exam_List.0.title }}
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="main" align="center" style="width: 600px;height:400px;"></div>
+    <div id="main" style="width: 600px;height:400px;"></div>
     <script type="text/javascript">
         // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'));
@@ -23,7 +22,7 @@
                 data:['销量']
             },
             xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+                data: [{% for test in Exam_List %}'{{test.title}}',{% endfor %}]
             },
             yAxis: {},
             series: [{
