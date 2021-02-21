@@ -5,12 +5,12 @@
     <script src = "https://cdn.jsdelivr.net/npm/echarts@5.0.2/dist/echarts.min.js"></script>
 </head>
 <body>
-    {{ Exam_List.0.title }}
+    showing...
     <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div id="main" style="width: 600px;height:400px;"></div>
-    <script type="text/javascript">
+    <div id = "Exam_Cage" style="width: 600px; height:400px;"></div>
+    <script type = "text/javascript">
         // 基于准备好的dom，初始化echarts实例
-        var myChart = echarts.init(document.getElementById('main'));
+        var myChart = echarts.init(document.getElementById("Exam_Cage"));
 
         // 指定图表的配置项和数据
         var option = {
@@ -22,13 +22,21 @@
                 data:['销量']
             },
             xAxis: {
-                data: [{% for test in Exam_List %}'{{test.title}}',{% endfor %}]
+                data:[
+                    {% for test in Exam_List %}
+                        '{{test.title}}',
+                    {% endfor %}
+                ]
             },
             yAxis: {},
             series: [{
-                name: '销量',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
+                name: '分数',
+                type: 'boxplot',
+                data:[
+                    {% for test in Exam_List %}
+                        [{{ test.value_min }}, {{ test.value_Q1 }}, {{ test.value_Q2 }}, {{ test.value_Q3 }}, {{ test.value_max }}],
+                    {% endfor %}
+                ]
             }]
         };
 
