@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "utf-8">
+    <title>考试信息</title>
+    <script src = "https://cdn.jsdelivr.net/npm/echarts@5.0.2/dist/echarts.min.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div class = "Board" id = "Exam_Cage" style="width: 600px; height:400px;"></div>
+    <button onclick = "ChangeBoardId('Exam_Cage')">Exam_Cage</button>
+    <button onclick = "ChangeBoardId('Reset')">Reset</button>
+    <script>
+        function ChangeBoardId(GoalId){
+            document.getElementsByClassName("Board")[0].setAttribute("id", GoalId);
+            /*Exam_Cage*/{
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById("Exam_Cage"));
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: 'ECharts 入门示例'
+                },
+                tooltip: {},
+                legend: {
+                    data:['分数']
+                },
+                xAxis: {
+                    data:[
+                        {% for test in Exam_List %}
+                            '{{test.title}}',
+                        {% endfor %}
+                    ]
+                },
+                yAxis: {},
+                series: [{
+                    name: '分数',
+                    type: 'boxplot',
+                    data:[
+                        {% for test in Exam_List %}
+                            [{{ test.value_min }}, {{ test.value_Q1 }}, {{ test.value_Q2 }}, {{ test.value_Q3 }}, {{ test.value_max }}],
+                        {% endfor %}
+                    ]
+                }]
+            };
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+            }
+
+        }
+    </script>
+</body>
+<script type = "text/javascript">
+
+</script>
+</html>

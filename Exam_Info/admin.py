@@ -2,6 +2,10 @@ from django.contrib import admin
 from .models import *
 # Register your models here.
 
+@admin.register(Exam)
+class ExamAdmin(admin.ModelAdmin):
+    pass
 
-admin.site.register(Exam)
-admin.site.register(Student)
+@admin.register(Student)
+class StudentAdmin(admin.ModelAdmin):
+    pass

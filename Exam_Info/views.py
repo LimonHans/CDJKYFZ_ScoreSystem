@@ -1,14 +1,18 @@
 from django.shortcuts import render
+from django.views import generic
 from .models import *
 
 # Create your views here.
 from django.http import HttpResponse
 
 
-def index(request):
-    context = {
-        'Exam_List': Exam.objects.all(),
-    }
+class IndexView(generic.ListView):
+    template_name = 'Exam_Info/index.html'
+    context_object_name = 'Exam_List'
 
-    return render(request, 'Exam_Info/index.html', context = context)
+    def get_queryset(self):
+        return Exam.objects.order_by('-time')
     
+class DetailView(generic.DetailView):
+    template_name = 'Exam_Info/ExamDetails.html'
+    model = Exam
