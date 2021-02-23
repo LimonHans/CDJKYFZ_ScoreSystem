@@ -50,6 +50,9 @@ class Student(models.Model):
     )
     gender = models.CharField(verbose_name = "性别", max_length = 1, help_text = "性别", choices = GENDERS)
     enter_date = models.DateField(verbose_name = "入学时间", default = timezone.now)
+    ######################################
+    # 这个肯定要改吧，啥时候注册啥时候入学吗... #
+    ######################################
     remarks = models.TextField(verbose_name = "备注", blank = True)
     in_class = models.ForeignKey(to = Class, verbose_name = "所在班级", on_delete=models.CASCADE, null = True)
 
