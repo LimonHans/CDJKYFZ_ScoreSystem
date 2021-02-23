@@ -12,8 +12,11 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         return Exam.objects.order_by('-time')
-    
+
 class DetailView(generic.DetailView):
     template_name = 'Exam_Info/ExamDetails.html'
     model = Exam
-    context_object_name = 'Exam_List'
+    context_object_name = 'current_exam'
+
+    def get_queryset(self):
+      return Exam.objects.order_by('-time')
