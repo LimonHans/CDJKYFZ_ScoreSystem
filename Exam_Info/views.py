@@ -16,3 +16,4 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     template_name = 'Exam_Info/ExamDetails.html'
     model = Exam
+    context_object_name = 'Exam_List'
