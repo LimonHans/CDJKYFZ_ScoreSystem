@@ -8,9 +8,13 @@ from django.http import HttpResponse
 
 class IndexView(generic.ListView):
     template_name = 'Exam_Info/index.html'
-    context_object_name = 'Exam_List'
+    context_object_name = 'ExamList'
 
     def get_queryset(self):
+        return {
+            Exam.objects.order_by('-time')[0:2],
+            len(Exam.objects)
+        }
 
 class DetailView(generic.DetailView):
     template_name = 'Exam_Info/ExamDetails.html'
@@ -18,7 +22,7 @@ class DetailView(generic.DetailView):
     context_object_name = 'NowExam'
 
     def get_queryset(self):
-      return Exam.objects.order_by('-time')[0:3]
+      return Exam.objects.order_by('-time')
 
 def ContrastStudentsView(request):
     # TODO
