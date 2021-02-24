@@ -27,7 +27,7 @@
                 },
                 xAxis: {
                     data:[
-                        '{{ current_exam.title }}'
+                        '{{ NowExam.title }}'
                     ]
                 },
                 yAxis: {},
@@ -35,7 +35,7 @@
                     name: '分数',
                     type: 'boxplot',
                     data:[
-                        [{{ current_exam.value_min }}, {{ current_exam.value_Q1 }}, {{ current_exam.value_Q2 }}, {{ current_exam.value_Q3 }}, {{ current_exam.value_max }}],
+                        [{{ NowExam.value_min }}, {{ NowExam.value_Q1 }}, {{ NowExam.value_Q2 }}, {{ NowExam.value_Q3 }}, {{ NowExam.value_max }}],
                     ]
                 }]
             };

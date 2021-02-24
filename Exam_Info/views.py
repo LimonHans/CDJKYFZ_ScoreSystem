@@ -11,12 +11,15 @@ class IndexView(generic.ListView):
     context_object_name = 'Exam_List'
 
     def get_queryset(self):
-        return Exam.objects.order_by('-time')
 
 class DetailView(generic.DetailView):
     template_name = 'Exam_Info/ExamDetails.html'
     model = Exam
-    context_object_name = 'current_exam'
+    context_object_name = 'NowExam'
 
     def get_queryset(self):
-      return Exam.objects.order_by('-time')
+      return Exam.objects.order_by('-time')[0:3]
+
+def ContrastStudentsView(request):
+    # TODO
+    pass
