@@ -13,7 +13,7 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return {
             Exam.objects.order_by('-time')[0:2],
-            len(Exam.objects)
+            #len(Exam)
         }
 
 class DetailView(generic.DetailView):
@@ -22,8 +22,8 @@ class DetailView(generic.DetailView):
     context_object_name = 'NowExam'
 
     def get_queryset(self):
-      return Exam.objects.order_by('-time')
+        return Exam.objects.order_by('-time')
 
-def ContrastStudentsView(request):
-    # TODO
-    pass
+#def ContrastStudentsView(request):
+#    # TODO
+#    pass
