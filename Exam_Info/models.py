@@ -20,12 +20,6 @@ class Exam(models.Model):
     title = models.CharField(verbose_name = "标题", blank = False, max_length = 200, help_text = "考试标题", default = "未指定标题")
     description = models.TextField(verbose_name = "描述", blank = True, help_text = "考试描述", default = "暂无描述")
 
-    value_min = models.IntegerField(blank = False, help_text = "Min Scores", default = 0)
-    value_Q1 = models.IntegerField(blank = False, help_text = "Q1 Scores", default = 0)
-    value_Q2 = models.IntegerField(blank = False, help_text = "Q2 Scores", default = 75)
-    value_Q3 = models.IntegerField(blank = False, help_text = "Q3 Scores", default = 150)
-    value_max = models.IntegerField(blank = False, help_text = "Max Scores", default = 150)
-
     time = models.DateField(verbose_name = "考试时间", default = timezone.now)
 
     # 年级选择元组
