@@ -67,14 +67,28 @@
             <div class="col-md-4">
                 <img>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-4">
                 <div class="card border-success">
-                    <div class="card-body text-success" style="min-height: 12rem;min-width: 24rem;max-width: 36rem;">
+                    <div class="card-body text-success" style="min-height: 12rem;min-width: 12rem;max-width: 36rem;">
                         <h4 class="card-title">最近一次考试</h4>
                         <h5 class="card-subtitle mb-2 text-muted">查看最近一次考试的情况</h5>
                         <p class="card-text"><small class="text-muted">上一次考试：$(TIME)$</small></p>
+                        <p class="card-text"><small class="text-muted">年级最高：$(MAXSCORE)$</small></p>
+                        <p class="card-text"><small class="text-muted">年级均分：$(MEANSCORE)$</small></p>
                         <a href class="card-link">查看年级情况</a>
                         <a href class="card-link">查看班级情况</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-success">
+                    <div class="card-body text-success" style="min-height: 12rem;min-width: 12rem;max-width: 36rem;">
+                        <h4 class="card-title">查看所有考试</h4>
+                        <h5 class="card-subtitle mb-2 text-muted">查看所有考试的情况</h5>
+                        <p class="card-text text-muted"><small>包含的功能：</small></p>
+                        <p class="card-text text-muted"><small>以考试为单位查看学生表现</small></p>
+                        <p class="card-text text-muted"><small>以考试为单位查看班级表现</small></p>
+                        <a href class="card-link">前往查看所有考试</a>
                     </div>
                 </div>
             </div>
@@ -86,10 +100,10 @@
                     <div class="card-body text-info">
                         <h4 class="card-title">查看学生</h4>
                         <h5 class="card-subtitle mb-2">以学生为单位进行查询</h5>
-                        <p class="card-text text-muted">包含的功能：</p>
-                        <p class="card-text text-muted">查看单独学生的单科或总科情况</p>
-                        <p class="card-text text-muted">任选一组学生进行单科或总科的对比查看</p>
-                        <a href="#" class="card-link">查看学生</a>
+                        <p class="card-text text-muted"><small>包含的功能：</small></p>
+                        <p class="card-text text-muted"><small>查看单独学生的单科或总科情况</small></p>
+                        <p class="card-text text-muted"><small>任选一组学生进行单科或总科的对比查看</small></p>
+                        <a href="#" class="card-link">前往查看学生</a>
                     </div>
                 </div>
             </div>
@@ -98,8 +112,10 @@
                     <div class="card-body text-info">
                         <h4 class="card-title">查看班级</h4>
                         <h5 class="card-subtitle mb-2">以班级为单位查看考试情况</h5>
-                        <p class="card-text text-muted"></p>
-                        <a href="#" class="card-link">前往查看</a>
+                        <p class="card-text text-muted"><small>包含的功能：</small></p>
+                        <p class="card-text text-muted"><small>查看单独一次考试的单科或总科情况</small></p>
+                        <p class="card-text text-muted"><small>在时间轴上任选一组考试查看对比分析</small></p>
+                        <a href="class" class="card-link">前往查看班级</a>
                     </div>
                 </div>
             </div>
