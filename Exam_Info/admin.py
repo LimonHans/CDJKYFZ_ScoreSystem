@@ -36,9 +36,6 @@ class ExamScoreResource(resources.ModelResource):
         fields = ('id', 'student', 'class_rank', 'total_score', 'yw', 'sx', 'yy', 'wl', 'hx', 'sw')
 
 # Admin for models
-@admin.register(Exam)
-class ExamAdmin(ImportExportModelAdmin):
-    pass
 
 @admin.register(Class)
 class ClassAdmin(ImportExportModelAdmin):
