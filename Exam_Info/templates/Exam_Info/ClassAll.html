@@ -63,16 +63,16 @@
     </div>
     <div class="BORDER"></div>
     <div class="container-fluid">
-        <div class="row row-cols-4">
+        <div class="row row-cols-5">
         {% for now_class in ClassList %}
             <div class="col">
                 <!---->
             </div>
             <div class="col">
-                <div class="card border-info" style="min-height: 24rem;min-width: 24rem;">
+                <div class="card border-info" style="min-height: 12rem;min-width: 24rem;">
                     <div class="card-body text-info">
-                        <h4 class="card-title">查看学生</h4>
-                        <h5 class="card-subtitle mb-2">以学生为单位进行查询</h5>
+                        <h4 class="card-title">查看 {{ now_class.name }} 班</h4>
+                        <h5 class="card-subtitle mb-2">查看 {{ now_class.name }} 班的详细信息</h5>
                         <p class="card-text text-muted">包含的功能：</p>
                         <p class="card-text text-muted">查看单独学生的单科或总科情况</p>
                         <p class="card-text text-muted">任选一组学生进行单科或总科的对比查看</p>
@@ -80,6 +80,7 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-1"></div>
         {% endfor %}
         </div>
     </div>

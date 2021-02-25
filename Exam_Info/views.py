@@ -28,7 +28,7 @@ class ClassOverView(generic.ListView):
     context_object_name = 'ClassList'
 
     def get_queryset(self):
-        return Class.objects.order_by('-id')
+        return Class.objects.order_by('name')
 
 class ClassDetailView(generic.DetailView):
     template_name ='Exam_Info/ClassDetails.html'

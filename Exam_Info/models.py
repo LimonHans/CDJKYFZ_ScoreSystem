@@ -6,7 +6,7 @@ from django.db import models
 
 # 班级类
 class Class(models.Model):
-    name = models.CharField(verbose_name = "班级名称", max_length = 100)
+    name = models.IntegerField(help_text = "数字即可", verbose_name = "班级名称")
 
     class Meta:
         verbose_name = '班级'
