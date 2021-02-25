@@ -123,7 +123,7 @@
                             },
                             xAxis: {
                                 data:[
-                                    {% for i in range(0, {{ NowExam.value_scoremax }}/10 + 1) %}
+                                    {% for i in range(0, NowExam.value_scoremax/10 + 1) %}
                                         '{{ NowExam.value_scoremax }} - i*10',
                                         // TODO 如果该画布出错，考虑将此处的单引号删去
                                     {% endfor %}
@@ -135,6 +135,39 @@
                                 type: 'bar',
                                 data:[
                                     {% for i in NowExam.bar10score %}
+                                        'i',
+                                        // TODO 如果该画布出错，考虑将此处的单引号删去
+                                    {% endfor %}
+                                ]
+                            }]
+                        }
+                        Exam_Bar.setOption(Option_Bar)
+                    }
+                    function ChangeBoardId_3(){
+                        document.getElementsByClassName("Board")[0].setAttribute("id", 'Exam_BarRank')
+                        var Exam_Bar = echarts.init(document.getElementById("Exam_BarRank"));
+                        var Option_Bar = {
+                            title: {
+                                text: '排名柱状图'
+                            },
+                            tooltip: {},
+                            legend: {
+                                data:['排名']
+                            },
+                            xAxis: {
+                                data:[
+                                    {% for i in range(0, NowExam.value_rankmax/20 + 1) %}
+                                        '10*i + 1',
+                                        // TODO 如果该画布出错，考虑将此处的单引号删去
+                                    {% endfor %}
+                                ]
+                            },
+                            yAxis: {},
+                            series: [{
+                                name: '排名',
+                                type: 'bar',
+                                data:[
+                                    {% for i in NowExam.bar20rank %}
                                         'i',
                                         // TODO 如果该画布出错，考虑将此处的单引号删去
                                     {% endfor %}
