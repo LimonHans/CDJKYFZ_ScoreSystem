@@ -65,7 +65,7 @@
     <div class="BORDER"></div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-3">
+            <div class="col-md-3">
                 <div class="list-group" id="list-tab" role="tablist">
                     <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">选择一场考试进行预览</a>
                     {% for now_exam in ExamList %}
@@ -76,14 +76,13 @@
                     {% endfor %}
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-md-8">
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                         <h3>选择一场考试进行预览</h3>
                     </div>
                     {% for now_exam in ExamList %}
                         <div class="tab-pane fade" id="list-{{ now_exam.title }}" role="tabpanel" aria-labelledby="#list-{{ now_exam.title }}">
-                            <br />
                             <br />
                             <div id="Board{{ now_exam.title }}" style="width: 1000px; height: 680px;"></div>
                             <script>
@@ -104,9 +103,7 @@
                                     yAxis: [{
                                         name: '分数',
                                         type: 'value',
-                                        min: function(value){
-                                            return value.min - 20;
-                                        },
+                                        min: 30,
                                         max: 150,
                                         splitNumber: 10
                                     }
@@ -115,18 +112,12 @@
                                         name: '分数',
                                         type: 'boxplot',
                                         data:[
-                                            //[{{ NowExam.value_min }}, {{ NowExam.value_Q1 }}, {{ NowExam.value_Q2 }}, {{ NowExam.value_Q3 }}, {{ NowExam.value_max }}],
-                                        ]
-                                    },{
-                                        name: '排名',
-                                        type: 'boxplot',
-                                        data:[
-
                                         ]
                                     }]
                                 };
                                 Exam_Boxplot.setOption(Option_Boxplot);
                             </script>
+                            <a type="button" class="btn btn-primary" style="float: right;" href="{{ now_exam.id }}/exam_details">>>>>查看考试{{ now_exam.title }}的详情</a>
                         </div>
                     {% endfor %}
                 </div>
