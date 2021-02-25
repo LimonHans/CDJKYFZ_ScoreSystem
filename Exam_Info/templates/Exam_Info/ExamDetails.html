@@ -2,15 +2,69 @@
 <html>
 <head>
     <meta charset = "utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>考试信息</title>
     <script src = "https://cdn.jsdelivr.net/npm/echarts@5.0.2/dist/echarts.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <style type="text/css">
+        *, *::before, *::after{
+            box-sizing: border-box;
+        }
+        .BORDER{
+            display: block;
+            position: relative;
+            border: white;
+            padding: 1.5rem;
+            border-width: .2rem;
+            margin-left: 0;
+            margin-right: 0;
+            margin-top: 1rem;
+            margin-bottom: 0px;
+        }
+        .BORDER::after{
+            display: block;
+            clear: both;
+            content: "";
+        }
+    </style>
 </head>
 <body>
-    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-    <div class = "Board" id = "Exam_Cage" style="width: 600px; height:400px;"></div>
-    <button onclick = "ChangeBoardId('Exam_Cage')">Exam_Cage</button>
-    <button onclick = "ChangeBoardId('Reset')">Reset</button>
-    <script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+    <div class="BORDER">
+        <div class="fixed-top">
+            <div class="collapse" id="navbarToggleExternalContent">
+                <div class="bg-dark p-4">
+                    <h5 class="text-white h4">全局导航栏</h5>
+                    <table>
+                        <tr>
+                            <th class="text-white">1</th>
+                            <th class="text-white">2</th>
+                        </tr>
+                        <tr>
+                            <th class="text-white">Toggleable via the navbar brand.</th>
+                            <th class="text-white">Toggleable via the navbar brand.</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <nav class="navbar navbar-dark bg-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <span class="text-white">Score System</span>
+            </nav>
+        </div>
+    </div>
+    <div class="BORDER"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class = "Board" id = "Exam_Cage" style="width: 600px; height:400px;"></div>
+                <button class="btn btn-outline-info" onclick = "ChangeBoardId('Exam_Cage')">Exam_Cage</button>
+                <button class="btn btn-outline-info" onclick = "ChangeBoardId('Reset')">Reset</button>
+                <script>
         function ChangeBoardId(GoalId){
             document.getElementsByClassName("Board")[0].setAttribute("id", GoalId);
             /*Exam_Cage*/{
@@ -45,5 +99,8 @@
 
         }
     </script>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
