@@ -13,7 +13,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         return {
-            Exam.objects.order_by('-time')[0:2]
+            ExamScore.objects.order_by('-time')[0:2]
         }
 
 class ExamOverView(generic.ListView):
@@ -22,7 +22,7 @@ class ExamOverView(generic.ListView):
     context_object_name = 'ExamList'
 
     def get_queryset(self):
-        return Exam.objects.order_by('-time').values('exam_title')
+        return ExamScore.objects.order_by('-time').values('exam_title')
 
 class ExamDetailView(generic.DetailView):
     template_name = 'Exam_Info/ExamDetails.html'
