@@ -74,9 +74,9 @@
                         <h4 class="card-title">查看 {{ now_class.name }} 班</h4>
                         <h5 class="card-subtitle mb-2">查看 {{ now_class.name }} 班的详细信息</h5>
                         <p class="card-text text-muted">包含的功能：</p>
-                        <p class="card-text text-muted">查看单独学生的单科或总科情况</p>
-                        <p class="card-text text-muted">任选一组学生进行单科或总科的对比查看</p>
-                        <a href="#" class="card-link">查看学生</a>
+                        <p class="card-text text-muted">查看该班某一次考试的情况</p>
+                        <p class="card-text text-muted">任选时间轴上一组考试的对比查看</p>
+                        <a href="{{ now_class.name }}/class_details" class="btn btn-primary">查看 {{ now_class.name }} 班</a>
                     </div>
                 </div>
             </div>
