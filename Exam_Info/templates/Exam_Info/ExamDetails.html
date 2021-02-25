@@ -66,7 +66,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <div class = "Board" id = "UnKnown" style="width: 600px; height:400px;">
+                <div class = "Board" id = "UnKnown" style="width: 1000px; height:800px;">
+                    <!-- TODO 这里只需注意如果能有 style 的 width: 100%; 或者 width: auto; 并且能正常显示，就改成这样 -->
                     <div class="spinner-border text-secondary" role="status" align="center">
                         <span class="sr-only">Loading...</span>
                     </div>
@@ -76,7 +77,8 @@
             <div class="col-md-4">
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-secondary" onclick="ChangeBoardId_1()">箱型图</button>
-                    <button type="button" class="btn btn-secondary" onclick="ChangeBoardId_2()">柱状图</button>
+                    <button type="button" class="btn btn-secondary" onclick="ChangeBoardId_2()">分数柱状图</button>
+                    <button type="button" class="btn btn-secondary" onclick="ChangeBoardId_3()">排名柱状图</button>
                 </div>
                 <script>
                     function ChangeBoardId_1(){
@@ -95,7 +97,9 @@
                                     '{{ NowExam.title }}'
                                 ]
                             },
-                            yAxis: {},
+                            yAxis: {
+
+                            },
                             series: [{
                                 name: '分数',
                                 type: 'boxplot',
@@ -107,15 +111,15 @@
                         Exam_Boxplot.setOption(Option_Boxplot);
                         }
                     function ChangeBoardId_2(){
-                        document.getElementsByClassName("Board")[0].setAttribute("id", 'Exam_Bar')
-                        var Exam_Bar = echarts.init(document.getElementById("Exam_Bar"));
+                        document.getElementsByClassName("Board")[0].setAttribute("id", 'Exam_BarScore')
+                        var Exam_Bar = echarts.init(document.getElementById("Exam_BarScore"));
                         var Option_Bar = {
                             title: {
                                 text: '柱状图'
                             },
                             tooltip: {},
                             legend: {
-                                data:['分数', '排名']
+                                data:['分数']
                             },
                             xAxis: {
 
@@ -123,12 +127,6 @@
                             yAxis: {},
                             series: [{
                                 name: '分数',
-                                type: 'bar',
-                                data:[
-                                    []
-                                ]
-                            }, {
-                                name: '排名',
                                 type: 'bar',
                                 data:[
                                     []
