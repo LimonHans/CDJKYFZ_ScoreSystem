@@ -83,7 +83,8 @@
                     </div>
                     {% for now_exam in ExamList %}
                         <div class="tab-pane fade" id="list-{{ now_exam.title }}" role="tabpanel" aria-labelledby="#list-{{ now_exam.title }}">
-                            <p>当前已勾选：</p>
+                            <br />
+                            <br />
                             <div id="Board{{ now_exam.title }}" style="width: 1000px; height: 680px;"></div>
                             <script>
                                 var Exam_Boxplot = echarts.init(document.getElementById("Board{{ now_exam.title }}"));
@@ -93,16 +94,21 @@
                                     },
                                     tooltip: {},
                                     legend: {
-                                        data:['分数', '排名']
+                                        data:['分数']
                                     },
                                     xAxis: {
                                         data:[
-                                            //'{{ NowExam.title }}'
+                                            '语文', '数学', '外语', '物理', '化学', '生物'
                                         ]
                                     },
                                     yAxis: [{
                                         name: '分数',
-                                        type: 'value'
+                                        type: 'value',
+                                        min: function(value){
+                                            return value.min - 20;
+                                        },
+                                        max: 150,
+                                        splitNumber: 10
                                     }
                                     ],
                                     series: [{
