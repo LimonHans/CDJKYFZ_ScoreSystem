@@ -82,3 +82,6 @@ class ExamScore(models.Model):
     class Meta:
         verbose_name = '考试信息'
         verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return f'{self.student}的{self.exam_title}信息-总分{self.total_score}分'
