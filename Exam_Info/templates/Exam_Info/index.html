@@ -25,6 +25,11 @@
             clear: both;
             content: "";
         }
+        .fixed-bottom{
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -105,5 +110,27 @@
             </div>
         </div>
     </div>
+    <footer style="background-color: #353b41;">
+        <br />
+        <span class="text-white h5">CDJKYFZ_ScoreSystem</span>
+        <span class="text-white" style="float: right">Created by <b>HansLimon & dixiatielu</b> with bootstrap, Echarts and simpleUI. Powered by django.</span>
+    </footer>
+    <script type="text/javascript">
+        $(function(){
+            function footerPosition(){
+                $("footer").removeClass("fixed-bottom");
+                var contentHeight = document.body.scrollHeight,//网页正文全文高度
+                winHeight = window.innerHeight;//可视窗口高度，不包括浏览器顶部工具栏
+                if(!(contentHeight > winHeight)){
+                    //当网页正文高度小于可视窗口高度时，为footer添加类fixed-bottom
+                        $("footer").addClass("fixed-bottom");
+                } else {
+                    $("footer").removeClass("fixed-bottom");
+                }
+            }
+            footerPosition();
+            $(window).resize(footerPosition);
+      });
+    </script>
 </body>
 </html>

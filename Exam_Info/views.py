@@ -12,8 +12,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         return {
-            Exam.objects.order_by('-time')[0:2],
-            #len(Exam)
+            Exam.objects.order_by('-time')[0:2]
         }
 
 class DetailView(generic.DetailView):
