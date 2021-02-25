@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src = "https://cdn.jsdelivr.net/npm/echarts@5.0.2/dist/echarts.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
     <title>班级概览</title>
     <style type="text/css">
@@ -29,6 +30,9 @@
             position: fixed;
             bottom: 0;
             width: 100%;
+        }
+        .selector-for-some-widget {
+            box-sizing: content-box;
         }
     </style>
 </head>
@@ -63,13 +67,44 @@
     </div>
     <div class="BORDER"></div>
     <div class="container-fluid">
-        <div class="row row-cols-5">
+        <div class="row row-cols-4">
         {% for now_class in ClassList %}
             <div class="col">
-                <!---->
+                <div class="selector-for-some-widget" id="Board{{ now_class.name }}" style="width: 400px; height: 340px;"></div>
+                <script>
+                var Exam_Boxplot = echarts.init(document.getElementById("Board{{ now_class.name }}"));
+                var Option_Boxplot = {
+                    title: {
+                        show: false
+                    },
+                    tooltip: {},
+                    legend: {
+                        show: false
+                    },
+                    xAxis: {
+                        data:[
+                            '1', '2', '3'
+                        ]
+                    },
+                    yAxis: {
+                        data: [
+                            ''
+                        ]
+                    },
+                    series: [{
+                        name: '排名',
+                        type: 'boxplot',
+                        data:[
+                            //[{{ NowExam.value_min }}, {{ NowExam.value_Q1 }}, {{ NowExam.value_Q2 }}, {{ NowExam.value_Q3 }}, {{ NowExam.value_max }}],
+                        ]
+                    }
+                    ]
+                };
+                Exam_Boxplot.setOption(Option_Boxplot);
+                </script>
             </div>
             <div class="col">
-                <div class="card border-info" style="min-height: 12rem;min-width: 24rem;">
+                <div class="card border-info" style="min-height: 240px;min-width: 18rem;">
                     <div class="card-body text-info">
                         <h4 class="card-title">查看 {{ now_class.name }} 班</h4>
                         <h5 class="card-subtitle mb-2">查看 {{ now_class.name }} 班的详细信息</h5>
@@ -80,7 +115,6 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-1"></div>
         {% endfor %}
         </div>
     </div>
@@ -93,11 +127,10 @@
         $(function(){
             function footerPosition(){
                 $("footer").removeClass("fixed-bottom");
-                var contentHeight = document.body.scrollHeight,//网页正文全文高度
-                winHeight = window.innerHeight;//可视窗口高度，不包括浏览器顶部工具栏
+                var contentHeight = document.body.scrollHeight,
+                winHeight = window.innerHeight;
                 if(!(contentHeight > winHeight)){
-                    //当网页正文高度小于可视窗口高度时，为footer添加类fixed-bottom
-                        $("footer").addClass("fixed-bottom");
+                    $("footer").addClass("fixed-bottom");
                 } else {
                     $("footer").removeClass("fixed-bottom");
                 }
@@ -106,5 +139,8 @@
             $(window).resize(footerPosition);
       });
     </script>
+    {% for now_class in ClassList %}
+
+    {% endfor %}
 </body>
 </html>

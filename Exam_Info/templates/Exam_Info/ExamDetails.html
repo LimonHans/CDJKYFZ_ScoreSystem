@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-    <meta charset = "utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>考试信息</title>
     <script src = "https://cdn.jsdelivr.net/npm/echarts@5.0.2/dist/echarts.min.js"></script>
@@ -150,11 +150,10 @@
         $(function(){
             function footerPosition(){
                 $("footer").removeClass("fixed-bottom");
-                var contentHeight = document.body.scrollHeight,//网页正文全文高度
-                winHeight = window.innerHeight;//可视窗口高度，不包括浏览器顶部工具栏
+                var contentHeight = document.body.scrollHeight,
+                winHeight = window.innerHeight;
                 if(!(contentHeight > winHeight)){
-                    //当网页正文高度小于可视窗口高度时，为footer添加类fixed-bottom
-                        $("footer").addClass("fixed-bottom");
+                    $("footer").addClass("fixed-bottom");
                 } else {
                     $("footer").removeClass("fixed-bottom");
                 }
