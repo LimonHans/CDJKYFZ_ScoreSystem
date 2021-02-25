@@ -61,44 +61,73 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <div class = "Board" id = "Exam_Cage" style="width: 600px; height:400px;"></div>
-                <button class="btn btn-outline-info" onclick = "ChangeBoardId('Exam_Cage')">Exam_Cage</button>
-                <button class="btn btn-outline-info" onclick = "ChangeBoardId('Reset')">Reset</button>
+                <div class = "Board" id = "UnKnown" style="width: 600px; height:400px;"></div>
+                <button class="btn btn-outline-info" onclick = "ChangeBoardId_1()">箱型图</button>
+                <button class="btn btn-outline-info" onclick = "ChangeBoardId_2()">柱状图</button>
                 <script>
-        function ChangeBoardId(GoalId){
-            document.getElementsByClassName("Board")[0].setAttribute("id", GoalId);
-            /*Exam_Cage*/{
-            // 基于准备好的dom，初始化echarts实例
-            var myChart = echarts.init(document.getElementById("Exam_Cage"));
-            // 指定图表的配置项和数据
-            var option = {
-                title: {
-                    text: 'ECharts 入门示例'
-                },
-                tooltip: {},
-                legend: {
-                    data:['分数']
-                },
-                xAxis: {
-                    data:[
-                        '{{ NowExam.title }}'
-                    ]
-                },
-                yAxis: {},
-                series: [{
-                    name: '分数',
-                    type: 'boxplot',
-                    data:[
-                        [{{ NowExam.value_min }}, {{ NowExam.value_Q1 }}, {{ NowExam.value_Q2 }}, {{ NowExam.value_Q3 }}, {{ NowExam.value_max }}],
-                    ]
-                }]
-            };
-            // 使用刚指定的配置项和数据显示图表。
-            myChart.setOption(option);
-            }
+                    function ChangeBoardId_1(){
+                        document.getElementsByClassName("Board")[0].setAttribute("id", 'Exam_Boxplot');
+                        /*Exam_Boxplot*/{
+                        var Exam_Boxplot = echarts.init(document.getElementById("Exam_Boxplot"));
+                        var Option_Boxplot = {
+                            title: {
+                                text: '箱型图'
+                            },
+                            tooltip: {},
+                            legend: {
+                                data:['分数']
+                            },
+                            xAxis: {
+                                data:[
+                                    '{{ NowExam.title }}'
+                                ]
+                            },
+                            yAxis: {},
+                            series: [{
+                                name: '分数',
+                                type: 'boxplot',
+                                data:[
+                                    [{{ NowExam.value_min }}, {{ NowExam.value_Q1 }}, {{ NowExam.value_Q2 }}, {{ NowExam.value_Q3 }}, {{ NowExam.value_max }}],
+                                ]
+                            }]
+                        };
+                        Exam_Boxplot.setOption(Option_Boxplot);
+                        }
+                    }
+                    function ChangeBoardId_2(){
+                        document.getElementsByClassName("Board")[0].setAttribute("id", 'Exam_Bar')
+                        /*Exam_Bar*/{
+                        var Exam_Bar = echarts.init(document.getElementById("Exam_Bar"));
+                        var Option_Bar = {
+                            title: {
+                                text: '柱状图'
+                            },
+                            tooltip: {},
+                            legend: {
+                                data:['分数', '排名']
+                            },
+                            xAxis: {
 
-        }
-    </script>
+                            },
+                            yAxis: {},
+                            series: [{
+                                name: '分数',
+                                type: 'bar',
+                                data:[
+                                    []
+                                ]
+                            }, {
+                                name: '排名',
+                                type: 'bar',
+                                data:[
+                                    []
+                                ]
+                            }]
+                        }
+                        Exam_Bar.setOption(Option_Bar)
+                        }
+                    }
+                </script>
             </div>
         </div>
     </div>
