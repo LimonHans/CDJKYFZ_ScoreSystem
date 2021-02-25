@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>班级概览</title>
     <script src = "https://cdn.jsdelivr.net/npm/echarts@5.0.2/dist/echarts.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
-    <title>班级概览</title>
     <style type="text/css">
         *, *::before, *::after{
             box-sizing: border-box;
@@ -70,37 +70,43 @@
         <div class="row row-cols-4">
         {% for now_class in ClassList %}
             <div class="col">
-                <div class="selector-for-some-widget" id="Board{{ now_class.name }}" style="width: 400px; height: 340px;"></div>
+                <div id="Board{{ now_class.name }}" style="width: 400px; height: 340px;"></div>
                 <script>
-                var Exam_Boxplot = echarts.init(document.getElementById("Board{{ now_class.name }}"));
-                var Option_Boxplot = {
-                    title: {
-                        show: false
-                    },
-                    tooltip: {},
-                    legend: {
-                        show: false
-                    },
-                    xAxis: {
-                        data:[
-                            '1', '2', '3'
-                        ]
-                    },
-                    yAxis: {
-                        data: [
-                            ''
-                        ]
-                    },
-                    series: [{
-                        name: '排名',
-                        type: 'boxplot',
-                        data:[
-                            //[{{ NowExam.value_min }}, {{ NowExam.value_Q1 }}, {{ NowExam.value_Q2 }}, {{ NowExam.value_Q3 }}, {{ NowExam.value_max }}],
-                        ]
-                    }
-                    ]
-                };
-                Exam_Boxplot.setOption(Option_Boxplot);
+                    var Exam_Boxplot = echarts.init(document.getElementById("Board{{ now_class.name }}"));
+                    var Option_Boxplot = {
+                        title: {
+                            text: "{{now_class.name}}班最近考试"
+                        },
+                        tooltip: {},
+                        legend: {
+                            data:['分数', '排名']
+                        },
+                        xAxis: {
+                            data:[
+                                //'{{ NowExam.title }}'
+                            ]
+                        },
+                        yAxis: [{
+                            name: '分数'
+                        },{
+                            name: '排名'
+                        }
+                        ],
+                        series: [{
+                            name: '分数',
+                            type: 'boxplot',
+                            data:[
+                                //[{{ NowExam.value_min }}, {{ NowExam.value_Q1 }}, {{ NowExam.value_Q2 }}, {{ NowExam.value_Q3 }}, {{ NowExam.value_max }}],
+                            ]
+                        },{
+                            name: '排名',
+                            type: 'boxplot',
+                            data:[
+
+                            ]
+                        }]
+                    };
+                    Exam_Boxplot.setOption(Option_Boxplot);
                 </script>
             </div>
             <div class="col">
@@ -139,8 +145,5 @@
             $(window).resize(footerPosition);
       });
     </script>
-    {% for now_class in ClassList %}
-
-    {% endfor %}
 </body>
 </html>
