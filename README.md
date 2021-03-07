@@ -12,7 +12,8 @@ Based on:
 ```shell
 git clone https://github.com/LimonHans/CDJKYFZ_ScoreSystem.git
 ```
-# Install Dependencies
+## Install Dependencies
 ```shell
 pip install -r requirements.txt
 ```
+## TODO
