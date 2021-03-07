@@ -123,10 +123,6 @@
                             },
                             xAxis: {
                                 data:[
-                                    {% for i in range(0, NowExam.value_scoremax/10 + 1) %}
-                                        '{{ NowExam.value_scoremax }} - i*10',
-                                        // TODO 如果该画布出错，考虑将此处的单引号删去
-                                    {% endfor %}
                                 ]
                             },
                             yAxis: {},
@@ -156,10 +152,6 @@
                             },
                             xAxis: {
                                 data:[
-                                    {% for i in range(0, NowExam.value_rankmax/20 + 1) %}
-                                        '10*i + 1',
-                                        // TODO 如果该画布出错，考虑将此处的单引号删去
-                                    {% endfor %}
                                 ]
                             },
                             yAxis: {},
