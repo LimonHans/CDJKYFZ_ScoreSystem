@@ -37,6 +37,17 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function counter(Goal, Up, Down){
+            var ans = 0;
+            for (var i = 0;i < Goal.length;i ++){
+                if (Goal[i] > Up)continue;
+                else if (Goal[i] <= Down)break;
+                i ++;
+            }
+            return i;
+        }
+    </script>
     <div class="BORDER">
         <div class="fixed-top">
             <div class="collapse" id="navbarToggleExternalContent">
@@ -112,6 +123,10 @@
                         }
                     function ChangeBoardId_2(){
                         document.getElementsByClassName("Board")[0].setAttribute("id", 'Exam_BarScore')
+                        var Bar_10 = new Array();
+                        {% for i in ScoreList_YW %}
+                            Bar_10.push({{ i }});
+                        {% endfor %}
                         var Exam_Bar = echarts.init(document.getElementById("Exam_BarScore"));
                         var Option_Bar = {
                             title: {
@@ -122,19 +137,13 @@
                                 data:['分数']
                             },
                             xAxis: {
-                                data:[
-                                ]
+                                data:[150, 140, 130, 120, 110, 100, 90, 80, 70, 60]
                             },
                             yAxis: {},
                             series: [{
                                 name: '分数',
                                 type: 'bar',
-                                data:[
-                                    {% for i in NowExam.bar10score %}
-                                        'i',
-                                        // TODO 如果该画布出错，考虑将此处的单引号删去
-                                    {% endfor %}
-                                ]
+                                data:[Counter()]
                             }]
                         }
                         Exam_Bar.setOption(Option_Bar)
