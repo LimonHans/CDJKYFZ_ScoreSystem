@@ -45,7 +45,11 @@ class ExamDetailView(generic.DetailView):
         query_set = self.get_queryset()
         context.update(query_set.aggregate(value_max = Max('total_score'))) # 为上下文加入总分最大值
         context.update(query_set.aggregate(value_min = Min('total_score'))) # 为上下文加入总分最小值
-        # context['value_Q1'], context['value_Q2'], context['value_Q3'] = np.percentile(list(query_set.values('total_score')), [25, 50, 75]) # 同理，总分的四分
+        total_score_dict_queryset = query_set.values('total_score')
+        total_score_list = []
+        for dic in total_score_dict_queryset:
+            total_score_list.append(float(dic['total_score']))
+        context['value_Q1'], context['value_Q2'], context['value_Q3'] = np.percentile(total_score_list, (25, 50, 75), interpolation = 'midpoint') # 同理，总分的四分
 
         # 语文
         context.update(query_set.aggregate(value_yw_max = Max('yw'))) # 为上下文加入最大值
@@ -74,8 +78,11 @@ class ExamDetailView(generic.DetailView):
         subjects = ('yw', 'sx', 'yy', 'wl', 'hx', 'sw')
 
         for subject in subjects:
-            pass
-            # context[f'value_{subject}_Q1'], context[f'value_{subject}_Q2'], context[f'value_{subject}_Q3'] = np.percentile(list(query_set.values(subject)), [25, 50, 75]) # 同理，各个学科的四分
+            subject_score_dict_queryset = query_set.values(subject)
+            subject_score_list = []
+            for dic in subject_score_dict_queryset:
+                subject_score_list.append(float(dic[subject]))
+            context[f'value_{subject}_Q1'], context[f'value_{subject}_Q2'], context[f'value_{subject}_Q3'] = np.percentile(subject_score_list, (25, 50, 75)) # 同理，各个学科的四分
         
         return context
 
