@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
     path('', views.IndexView.as_view(), name = 'index'),
     path('exam/', views.ExamOverView.as_view(), name = 'exam_all'),
-    path('exam/exam_details/<str:exam_title>/', views.ExamDetailView.as_view(), name = 'exam_details'),
+    path('exam/exam_details/<int:pk>/', views.ExamDetailView.as_view(), name = 'exam_details'),
     # TODO
     # 1. 需要传递的内容包括：(注意有前缀：yw.,sx.,yy.,wl.,hx.,sw.)
     #    .name(用以描述本次考试，记录为字符串，格式为“考试<...>的<...>科目”), .value_min, .value_max, .value_Q1, .value_Q2, .value_Q3,

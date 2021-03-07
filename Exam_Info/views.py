@@ -2,6 +2,7 @@ from django.views import generic
 from .models import *
 import numpy as np
 from django.db.models import Max, Min, Avg
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 from django.http import HttpResponse
@@ -22,7 +23,12 @@ class ExamOverView(generic.ListView):
     context_object_name = 'ExamList'
 
     def get_queryset(self):
-        return ExamScore.objects.order_by('-time').values('exam_title')
+        return ExamScore.objects.order_by('-time')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        return context
 
 class ExamDetailView(generic.DetailView):
     template_name = 'Exam_Info/ExamDetails.html'
@@ -30,8 +36,8 @@ class ExamDetailView(generic.DetailView):
     context_object_name = 'NowExam'
 
     def get_queryset(self):
-        self.exam_title = get_object_or_404(ExamScore, exam_title = self.kwargs['exam_title'])
-        return ExamScore.objects.filter(exam_title = self.exam_title).order_by('-time')
+        # self.exam_id = get_object_or_404(ExamScore, id = self.kwargs['pk'])
+        return ExamScore.objects.filter(exam_id = self.kwargs['pk']).order_by('-time')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -68,6 +74,8 @@ class ExamDetailView(generic.DetailView):
 
         for subject in subjects:
             context[f'value_{subject}_Q1'], context[f'value_{subject}_Q2'], context[f'value_{subject}_Q3'] = np.percentile(list(self.queryset.values(subject)), [25, 50, 75]) # 同理，各个学科的四分
+        
+        return context
 
 class ClassOverView(generic.ListView):
     template_name = 'Exam_Info/ClassAll.html'
