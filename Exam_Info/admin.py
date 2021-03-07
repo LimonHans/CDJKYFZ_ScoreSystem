@@ -45,6 +45,10 @@ class ClassAdmin(ImportExportModelAdmin):
 class StudentAdmin(ImportExportModelAdmin):
     resource_class = StudentResource
 
+@admin.register(Exam)
+class ExamAdmin(ImportExportModelAdmin):
+    pass
+
 @admin.register(ExamScore)
 class ExamScoreAdmin(ImportExportModelAdmin):
     resource_class = ExamScoreResource

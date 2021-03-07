@@ -36,12 +36,25 @@ class Student(models.Model):
     def __str__(self):
         return self.name
 
-class ExamScore(models.Model):
-    student = models.ForeignKey(to = Student, verbose_name = "姓名", on_delete=models.CASCADE)
-    exam_title = models.CharField(verbose_name = "考试标题", max_length = 200, default = "未知考试")
-    exam_id = models.IntegerField(verbose_name = "考试编号", null = True)
+# 考试类
+class Exam(models.Model):
+    title = models.CharField(verbose_name = "考试标题", max_length = 200, default = "未知考试")
     description = models.TextField(verbose_name = "备注", blank = True)
     time = models.DateField(verbose_name = "考试时间", default = timezone.now)
+
+    class Meta:
+        verbose_name = '考试'
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return self.title
+
+# 考试信息
+class ExamScore(models.Model):
+    student = models.ForeignKey(to = Student, verbose_name = "姓名", on_delete = models.CASCADE)
+    exam = models.ForeignKey(to = Exam, verbose_name = "考试", on_delete = models.CASCADE)
+    description = models.TextField(verbose_name = "备注", blank = True)
+
 
     yw = models.DecimalField(max_digits = 5, decimal_places = 2, verbose_name = "语文成绩")
     sx = models.DecimalField(max_digits = 5, decimal_places = 2, verbose_name = "数学成绩")
@@ -59,4 +72,4 @@ class ExamScore(models.Model):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return f'{self.student}的{self.exam_title}信息-总分{self.total_score}分'
+        return f'{self.student}的{self.exam}信息-总分{self.total_score}分'

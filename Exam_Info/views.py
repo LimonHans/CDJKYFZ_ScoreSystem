@@ -19,11 +19,11 @@ class IndexView(generic.ListView):
 
 class ExamOverView(generic.ListView):
     template_name = 'Exam_Info/ExamAll.html'
-    model = ExamScore
+    model = Exam
     context_object_name = 'ExamList'
 
     def get_queryset(self):
-        return ExamScore.objects.order_by('-time')
+        return Exam.objects.order_by('-time')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -36,8 +36,8 @@ class ExamDetailView(generic.DetailView):
     context_object_name = 'NowExam'
 
     def get_queryset(self):
-        # self.exam_id = get_object_or_404(ExamScore, id = self.kwargs['pk'])
-        return ExamScore.objects.filter(exam_id = self.kwargs['pk']).order_by('-time')
+        return ExamScore.objects.all()
+        # return ExamScore.objects.filter(exam__id = self.kwargs['pk']).order_by('-time')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

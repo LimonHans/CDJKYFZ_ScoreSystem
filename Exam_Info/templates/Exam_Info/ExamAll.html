@@ -69,8 +69,8 @@
                 <div class="list-group" id="list-tab" role="tablist">
                     <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">选择一场考试进行预览</a>
                     {% for now_exam in ExamList %}
-                        <a class="list-group-item list-group-item-action" id="{{ now_exam.exam_title }}_list" data-toggle="list" href="#list-{{ now_exam.exam_title }}">
-                            <span>{{ now_exam.exam_title }}</span>
+                        <a class="list-group-item list-group-item-action" id="{{ now_exam.title }}_list" data-toggle="list" href="#list-{{ now_exam.title }}">
+                            <span>{{ now_exam.title }}</span>
                             <span style="float: right;" class="text-muted"><small>$(TIME)$</small></span>
                         </a>
                     {% endfor %}
@@ -82,15 +82,15 @@
                         <h3>选择一场考试进行预览</h3>
                     </div>
                     {% for now_exam in ExamList %}
-                        <div class="tab-pane fade" id="list-{{ now_exam.exam_title }}" role="tabpanel" aria-labelledby="#list-{{ now_exam.exam_title }}">
+                        <div class="tab-pane fade" id="list-{{ now_exam.title }}" role="tabpanel" aria-labelledby="#list-{{ now_exam.title }}">
                             <br />
-                            <div id="Board{{ now_exam.exam_title }}" style="width: 1000px; height: 680px;"></div>
+                            <div id="Board{{ now_exam.title }}" style="width: 1000px; height: 680px;"></div>
                             <!-- TODO 这里只需注意如果能有 style 的 width: 100%; 或者 width: auto; 并且能正常显示，就改成这样 -->
                             <script>
-                                var Exam_Boxplot = echarts.init(document.getElementById("Board{{ now_exam.exam_title }}"));
+                                var Exam_Boxplot = echarts.init(document.getElementById("Board{{ now_exam.title }}"));
                                 var Option_Boxplot = {
                                     title: {
-                                        text: "{{now_exam.exam_title}}的预览"
+                                        text: "{{now_exam.title}}的预览"
                                     },
                                     tooltip: {},
                                     legend: {
@@ -125,7 +125,7 @@
                                 Exam_Boxplot.setOption(Option_Boxplot);
                             </script>
                             <div class="btn-group" role="group" style="float: right;">
-                                <button type="button" class="btn btn-primary" disabled>>>>>查看考试{{ now_exam.exam_title }}的详情</button>
+                                <button type="button" class="btn btn-primary" disabled>>>>>查看考试{{ now_exam.title }}的详情</button>
                                 <button type="button" class="btn btn-outline-primary" href="examd_etails/yw">查看语文</button>
                                 <button type="button" class="btn btn-outline-primary" href="examd_etails/sx">查看数学</button>
                                 <button type="button" class="btn btn-outline-primary" href="examd_etails/yy">查看英语</button>
