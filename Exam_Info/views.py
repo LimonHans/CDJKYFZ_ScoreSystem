@@ -1,7 +1,7 @@
 from django.views import generic
 from .models import *
 import numpy as np
-from django.db.models import Max, Min, Avg
+from django.db.models import Max, Min, Avg, FloatField
 from django.shortcuts import get_object_or_404
 
 # Create your views here.
@@ -27,7 +27,19 @@ class ExamOverView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
+        qs = self.get_queryset()
+        SUBJECTS = ('yw', 'sx', 'yy', 'wl', 'hx', 'sw')
+        for exam in qs:
+            exam_context = {}
+            for subject in SUBJECTS:
+                exam_context.update(ExamScore.objects.filter(exam__id = exam.id).aggregate(
+                Min(subject, output_field = FloatField()),
+                Max(subject, output_field = FloatField()),
+                Avg(subject, output_field = FloatField())
+                ))
+            context.update({exam.id: exam_context})
+            # DEBUG
+            print(context) # DEBUG
         return context
 
 class ExamDetailView(generic.DetailView):
